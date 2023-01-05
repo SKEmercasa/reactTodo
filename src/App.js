@@ -1,14 +1,8 @@
 import './App.css';
-import NewTaskForm from './components/NewTaskForm/NewTaskForm';
-import Main from './components/Main/Main';
+import WebAppContainer from './components/WebAppContainer';
 
 function App() {
-  return (
-    <section className="todoapp">
-      <NewTaskForm />
-      <Main />
-    </section>
-  );
+  return <WebAppContainer />
 };
 
 export default App;
