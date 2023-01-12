@@ -2,7 +2,7 @@ import Edit from "./Edit/Edit";
 
 function Task(props) {
     return (
-        <li className={props.li.liName[0]}>
+        <li className={props.li.liName[2] ? `${props.li.liName[0]} hidden` : props.li.liName[0]}>
             <div className="view">
                 <input className="toggle" type="checkbox" checked={props.li.liName[1]} onChange={props.do} id={props.id} />
                 <label>

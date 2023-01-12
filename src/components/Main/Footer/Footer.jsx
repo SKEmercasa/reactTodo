@@ -1,11 +1,14 @@
+import TasksFilter from "./TasksFilter/TasksFilter";
+
 const Footer = (props) => {
+    let li = props.state.map((liData, i) => <TasksFilter key={`filter${i}`} li={liData} filter={props.filter} id={i}/>)
     return (
         <footer className="footer">
-            <span className="todo-count">1 items left</span>
+            <span className="todo-count">{props.count} items left</span>
             <ul className="filters">
-                {props.li}
+                {li}
             </ul>
-            <button className="clear-completed">Clear completed</button>
+            <button className="clear-completed" onClick={props.del}>Clear completed</button>
         </footer>
     )
 }

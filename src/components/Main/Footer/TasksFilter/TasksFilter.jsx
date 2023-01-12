@@ -1,7 +1,7 @@
 const TasksFilter = (props) => {
     return (
         <li>
-            <button className={props.li.buttonClass}>{props.li.buttonText}</button>
+            <button className={props.li.buttonClass} onClick={props.filter} id={props.id}>{props.li.buttonText}</button>
         </li>
     )
 }

@@ -1,11 +1,11 @@
-import FooterContainer from "./Footer/FooterContainer";
+import Footer from './Footer/Footer';
 import TaskList from "./TaskList/TaskList";
 
 function Main(props) {
     return (
         <section className="main">
-            <TaskList state={props.state} do={props.do}/>
-            <FooterContainer/>
+            <TaskList state={props.stateTask} do={props.do} />
+            <Footer state={props.stateFilter} count={props.count} filter={props.filter} del={props.del}/>
         </section>
     );
 };
