@@ -1,6 +1,9 @@
-import { formatDistance, subDays } from 'date-fns'
+import { formatDistanceToNow } from 'date-fns';
 
-export function date() {
-    let date = formatDistance(subDays(new Date(), 3), new Date());
-    return date;
+export function date(date) {
+    const result = formatDistanceToNow(
+        date,
+        { includeSeconds: true }
+    );
+    return result;
 };

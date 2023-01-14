@@ -1,7 +1,6 @@
 import React from "react";
 import WebApp from "./WebApp";
-import { date } from "../api/dateFns";
-
+import { date } from "../api/dateFns"
 
 class WebAppContainer extends React.Component {
 
@@ -10,20 +9,23 @@ class WebAppContainer extends React.Component {
             {
                 liName: ['completed', true, false],
                 discriptionText: 'Completed task',
-                createdText: `created ${date()} ago`,
-                isTagEdit: false
+                createdText: `created now`,
+                isTagEdit: false,
+                createTaskDate: new Date()
             },
             {
                 liName: ['', false, false],
                 discriptionText: 'Editing task',
-                createdText: `created ${date()} ago`,
-                isTagEdit: false
+                createdText: `created now`,
+                isTagEdit: false,
+                createTaskDate: new Date()
             },
             {
                 liName: ['', false, false],
                 discriptionText: 'Active task',
-                createdText: `created ${date()} ago`,
-                isTagEdit: false
+                createdText: `created now`,
+                isTagEdit: false,
+                createTaskDate: new Date()
             }
         ],
         enterPlace: '',
@@ -35,19 +37,44 @@ class WebAppContainer extends React.Component {
         activeTaskCount: 2
     };
 
+    componentDidMount() {
+        this.dates = setInterval(
+            () => this.event(),
+            1000
+        );
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.dates);
+    }
+
+    event() {
+        this.setState(state => {
+            let newState = state.data.map((el, i) => {
+                el.createdText = date(state.data[i].createTaskDate);
+                return el;
+            });
+            return {
+                ...state,
+                data: newState
+            };
+        });
+    };
+
     reducerTaskCrt = (e) => {
         if (e.keyCode === 13) {
             this.setState((state) => {
                 let filterStatus = false;
                 if (state.li[2].buttonClass === 'selected') {
                     filterStatus = true;
-                }
+                };
                 return {
                     data: [...state.data, {
                         liName: ['', false, filterStatus],
-                        discriptionText: `${this.state.enterPlace}`,
-                        createdText: `created ${date()} ago`,
+                        discriptionText: `${state.enterPlace}`,
+                        createdText: `created now`,
                         isTagEdit: false,
+                        createTaskDate: new Date()
                     }]
                 };
             });
@@ -140,7 +167,7 @@ class WebAppContainer extends React.Component {
     };
 
     render() {
-        return <WebApp state={this.state} do={this.reducerTaskCtrl} is={this.reducerTaskCrt} filter={this.reducerTaskFltr} del={this.reducerTaskDlt}/>
+        return <WebApp state={this.state} do={this.reducerTaskCtrl} is={this.reducerTaskCrt} filter={this.reducerTaskFltr} del={this.reducerTaskDlt} />
     };
 };
 
