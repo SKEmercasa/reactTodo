@@ -1,13 +1,13 @@
 import Footer from './Footer/Footer';
-import TaskList from "./TaskList/TaskList";
+import TaskList from './TaskList/TaskList';
 
-function Main(props) {
-    return (
-        <section className="main">
-            <TaskList state={props.stateTask} do={props.do} />
-            <Footer state={props.stateFilter} count={props.count} filter={props.filter} del={props.del}/>
-        </section>
-    );
-};
+function Main({ stateTask, stateFilter, doIt, count, filter, del }) {
+  return (
+    <section className="main">
+      <TaskList state={stateTask} doIt={doIt} />
+      <Footer state={stateFilter} count={count} filter={filter} del={del} />
+    </section>
+  );
+}
 
 export default Main;

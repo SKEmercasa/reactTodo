@@ -1,19 +1,20 @@
 import NewTaskForm from './NewTaskForm/NewTaskForm';
 import Main from './Main/Main';
 
-function WebApp(props) {
-    return (
-        <section className="todoapp">
-            <NewTaskForm is={props.is} state={props.state.enterPlace} />
-            <Main
-                stateTask={props.state.data}
-                stateFilter={props.state.li}
-                count={props.state.activeTaskCount}
-                do={props.do}
-                filter={props.filter}
-                del={props.del} />
-        </section>
-    );
-};
+function WebApp({ is, state, doIt, filter, del }) {
+  return (
+    <section className="todoapp">
+      <NewTaskForm is={is} state={state.enterPlace} />
+      <Main
+        stateTask={state.data}
+        stateFilter={state.li}
+        count={state.activeTaskCount}
+        doIt={doIt}
+        filter={filter}
+        del={del}
+      />
+    </section>
+  );
+}
 
 export default WebApp;

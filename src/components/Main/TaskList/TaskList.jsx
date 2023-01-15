@@ -1,12 +1,17 @@
-import Task from "./Task/Task";
+import Task from './Task/Task';
 
-const TaskList = (props) => {
-    let li = props.state.map((liData, i) => <Task li={liData} key={`list${i}`} doIt={(e) => { props.do(e) }} id={i} />);
-    return (
-        <ul className="todo-list">
-            {li}
-        </ul>
-    );
-};
+function TaskList({ state, doIt }) {
+  const li = state.map((liData, i) => (
+    <Task
+      li={liData}
+      key={`Task${i.toString()}`}
+      doIt={(e) => {
+        doIt(e);
+      }}
+      id={i}
+    />
+  ));
+  return <ul className="todo-list">{li}</ul>;
+}
 
 export default TaskList;

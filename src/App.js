@@ -1,8 +1,10 @@
 import './App.css';
-import WebAppContainer from './components/WebAppContainer';
+
+// eslint-disable-next-line import/namespace
+import { WebAppContainer } from './components/WebAppContainer';
 
 function App() {
-  return <WebAppContainer />
-};
+  return <WebAppContainer />;
+}
 
 export default App;
