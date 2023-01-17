@@ -1,7 +1,7 @@
 import NewTaskForm from './NewTaskForm/NewTaskForm';
 import Main from './Main/Main';
 
-function WebApp({ is, state, doIt, filter, del }) {
+function WebApp({ state, doIt, is, filter, del }) {
   return (
     <section className="todoapp">
       <NewTaskForm is={is} state={state.enterPlace} />

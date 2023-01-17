@@ -100,27 +100,27 @@ export class WebAppContainer extends React.Component {
   reducerTaskCtrl = (e) => {
     this.setState((state) => {
       if (e.type === 'click') {
-        const newData = state.data.filter((el, i) => i !== Number(e.target.id));
+        let newData = state.data.filter((el, i) => i !== Number(e.target.id));
         return {
           ...state,
           data: newData,
         };
-      }
-      let prevState;
-      if (!e.target.checked) {
-        prevState = ['', false, false];
       } else {
-        prevState = ['completed', true, false];
+        let prevState;
+        if (!e.target.checked) {
+          prevState = ['', false, false];
+        } else {
+          prevState = ['completed', true, false];
+        }
+        state.data[e.target.id].liName = prevState;
+        return {
+          ...state,
+        };
       }
-      const reState = state;
-      reState.data[e.target.id].liName = prevState;
-      return {
-        ...state,
-      };
     });
     this.setState((state) => {
-      const prevCount = 0;
-      state.data.forEach((el) => !el.liName[1] && prevCount + 1);
+      let prevCount = 0;
+      state.data.forEach((el) => !el.liName[1] && prevCount++);
       return {
         ...state,
         activeTaskCount: prevCount,
@@ -142,25 +142,22 @@ export class WebAppContainer extends React.Component {
       });
       const newData = state.data.map((el) => {
         const reEl = el;
-        switch (Number(e.target.id)) {
-          case 1: {
+        switch (numE) {
+          case 1:
             reEl.liName[2] = false;
             if (reEl.liName[1]) {
               reEl.liName[2] = true;
             }
             break;
-          }
-          case 2: {
+          case 2:
             reEl.liName[2] = false;
             if (!reEl.liName[1]) {
               reEl.liName[2] = true;
             }
             break;
-          }
-          default: {
+          default:
             reEl.liName[2] = false;
             break;
-          }
         }
         return reEl;
       });
