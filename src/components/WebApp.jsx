@@ -1,9 +1,9 @@
 import NewTaskForm from './NewTaskForm/NewTaskForm';
 import Main from './Main/Main';
 
-function WebApp({ state, doIt, is, filter, del }) {
+function WebApp({ state, doIt, is, filter, del, edit, record }) {
   return (
-    <section className="todoapp">
+    <main className="todoapp">
       <NewTaskForm is={is} state={state.enterPlace} />
       <Main
         stateTask={state.data}
@@ -12,8 +12,10 @@ function WebApp({ state, doIt, is, filter, del }) {
         doIt={doIt}
         filter={filter}
         del={del}
+        edit={edit}
+        record={record}
       />
-    </section>
+    </main>
   );
 }
 

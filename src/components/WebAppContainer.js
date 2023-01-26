@@ -1,7 +1,7 @@
 /* eslint-disable indent */
 import React from 'react';
 
-import { date } from '../api/dateFns';
+import { date } from '../assets/dateFns';
 
 import WebApp from './WebApp';
 
@@ -43,14 +43,14 @@ export class WebAppContainer extends React.Component {
   }
 
   componentDidMount() {
-    this.dates = setInterval(() => this.event(), 1000);
+    this.dates = setInterval(() => this.taskLifeEvent(), 1000);
   }
 
   componentWillUnmount() {
     clearInterval(this.dates);
   }
 
-  event() {
+  taskLifeEvent() {
     this.setState((state) => {
       const newState = state.data.map((el, i) => {
         const reEl = el;
@@ -65,7 +65,8 @@ export class WebAppContainer extends React.Component {
   }
 
   reducerTaskCrt = (e) => {
-    if (e.keyCode === 13) {
+    let emptyEnter = e.target.value.trim();
+    if (e.keyCode === 13 && emptyEnter !== '') {
       this.setState((state) => {
         let filterStatus = false;
         if (state.li[2].buttonClass === 'selected') {
@@ -179,6 +180,44 @@ export class WebAppContainer extends React.Component {
     });
   };
 
+  reducerTaskEdit = (e) => {
+    let current = Number(e.target.parentNode.firstChild.id);
+    this.setState((state) => {
+      const newState = state.data.map((el, i) => {
+        if (i === current && !el.liName[1]) {
+          el.liName[0] = 'editing';
+          el.isTagEdit = true;
+        }
+        return el;
+      });
+      return {
+        ...state,
+        data: newState,
+      };
+    });
+  };
+
+  reducerTaskEditRecord = (e) => {
+    let current = Number(e.target.previousSibling.firstChild.id);
+    let emptyEnter = e.target.value.trim();
+    if (e.keyCode === 13 && emptyEnter !== '') {
+      this.setState((state) => {
+        const newState = state.data.map((el, i) => {
+          if (current === i) {
+            el.discriptionText = e.target.value;
+            el.liName[0] = '';
+            el.isTagEdit = false;
+          }
+          return el;
+        });
+        return {
+          ...state,
+          data: newState,
+        };
+      });
+    }
+  };
+
   render() {
     return (
       <WebApp
@@ -187,6 +226,8 @@ export class WebAppContainer extends React.Component {
         is={this.reducerTaskCrt}
         filter={this.reducerTaskFltr}
         del={this.reducerTaskDlt}
+        edit={this.reducerTaskEdit}
+        record={this.reducerTaskEditRecord}
       />
     );
   }

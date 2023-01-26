@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 import Edit from './Edit/Edit';
 
-function Task({ doIt, id, li }) {
+function Task({ doIt, id, li, edit, record }) {
   return (
     <li className={li.liName[2] ? `${li.liName[0]} hidden` : li.liName[0]}>
       <div className="view">
@@ -11,16 +11,16 @@ function Task({ doIt, id, li }) {
           <span className="description">{li.discriptionText}</span>
           <span className="created">{li.createdText}</span>
         </label>
-        <button type="button" aria-label="edit" className="icon icon-edit" />
+        <button type="button" aria-label="edit" className="icon icon-edit" onClick={edit} />
         <button type="button" aria-label="des" className="icon icon-destroy" onClick={doIt} id={id} />
       </div>
-      {li.isTagEdit && <Edit />}
+      {li.isTagEdit && <Edit value={li.discriptionText} record={record} />}
     </li>
   );
 }
 
 Task.propTypes = {
-  doIt: PropTypes.func.isRequired,
+  doIt: PropTypes.func,
   id: PropTypes.number.isRequired,
   li: PropTypes.shape(
     {

@@ -1,7 +1,7 @@
 import TasksFilter from './TasksFilter/TasksFilter';
 
 function Footer({ state, filter, count, del }) {
-  const li = state.map((liData, i) => <TasksFilter li={liData} filter={filter} id={i} key={`btn${i.toString()}`} />);
+  const li = state.map((liData, i) => <TasksFilter li={liData} filter={filter} id={i} key={liData.buttonText} />);
   return (
     <footer className="footer">
       <span className="todo-count">{count} items left</span>
