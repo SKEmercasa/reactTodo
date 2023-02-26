@@ -113,6 +113,14 @@ export class WebAppContainer extends React.Component {
       });
       return { data: newData };
     });
+    this.setState((state) => {
+      let prevCount = 0;
+      state.data.forEach((el) => !el.liName[1] && prevCount++);
+      return {
+        ...state,
+        activeTaskCount: prevCount,
+      };
+    });
   }
 
   taskLifeEvent() {
