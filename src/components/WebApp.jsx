@@ -1,10 +1,13 @@
 import NewTaskForm from './NewTaskForm/NewTaskForm';
 import Main from './Main/Main';
+import { ErrorContainer } from './Error/ErrorContainer';
 
-function WebApp({ state, doIt, is, filter, del, edit, record }) {
+function WebApp({ state, doIt, is, filter, del, edit, record, unError, reStart }) {
+  const { enterPlace, enterMin, enterSec } = state;
   return (
     <main className="todoapp">
-      <NewTaskForm is={is} state={state.enterPlace} />
+      <NewTaskForm is={is} place={enterPlace} min={enterMin} sec={enterSec} />
+      {state.isFormat && <ErrorContainer format={state.isFormat} unError={unError} />}
       <Main
         stateTask={state.data}
         stateFilter={state.li}
@@ -14,6 +17,7 @@ function WebApp({ state, doIt, is, filter, del, edit, record }) {
         del={del}
         edit={edit}
         record={record}
+        reStart={reStart}
       />
     </main>
   );
