@@ -24,8 +24,7 @@
       }
     },
     "plugins": ["react", "prettier", "import"],
-    "rules": {
-      "indent": ["error", 2],
+    "rules": { 
       "prettier/prettier": "error",
       "linebreak-style": [0, "unix"],
       "quotes": ["error", "single"],
