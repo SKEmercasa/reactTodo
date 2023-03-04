@@ -13,6 +13,7 @@ function Task({ doIt, id, li, edit, record, reStart }) {
             <br />
             <button className={li.isTimer ? 'icon hidden' : 'icon icon-play'} id={'play'} onClick={reStart}></button>
             <button className={li.isTimer ? 'icon icon-pause' : 'icon hidden'} id={'pause'} onClick={reStart}></button>
+            &nbsp;&nbsp;&nbsp;&nbsp;
             <span className="description">
               {li.discriptionMin}:{li.discriptionSec}
             </span>

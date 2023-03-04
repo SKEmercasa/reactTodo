@@ -1,9 +1,9 @@
 import './App.css';
 
-import { WebAppContainer } from './components/WebAppContainer';
+import WebContainer from './components/WebContainer';
 
 function App() {
-  return <WebAppContainer />;
+  return <WebContainer />;
 }
 
 export default App;
