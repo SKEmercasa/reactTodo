@@ -1,6 +1,6 @@
 import Task from './Task/Task';
 
-function TaskList({ state, doIt, edit, record }) {
+function TaskList({ state, doIt, edit, record, reStart }) {
   const li = state.map((liData, i) => (
     <Task
       li={liData}
@@ -15,6 +15,7 @@ function TaskList({ state, doIt, edit, record }) {
       record={(e) => {
         record(e);
       }}
+      reStart={reStart}
     />
   ));
   return <ul className="todo-list">{li}</ul>;
